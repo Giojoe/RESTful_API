@@ -1,0 +1,21 @@
+{
+  "name": "restfulapi",
+  "version": "1.0.0",
+  "description": "RESTful API To Do Task",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "Joe Kumo",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "method-override": "^2.3.9",
+    "mongoose": "^4.11.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}
