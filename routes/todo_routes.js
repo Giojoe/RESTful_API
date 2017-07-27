@@ -32,12 +32,12 @@ router.route("/todotasks")
     //add a single task in the list
     .post(function(req,res,next){
 
-    var task = new Task();
-    task.name = req.body.name;
-    task.description = req.body.description;
-    task.status = req.body.status;
+    // var task = new Task();
+    // task.name = req.body.name;
+    // task.description = req.body.description;
+    // task.status = req.body.status;
 
-    task.save(req.body, function(err,task){
+    Task.create(req.body, function(err,task){
         if(err){
           return res.send(err);
         }
