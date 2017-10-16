@@ -7,8 +7,8 @@ var express = require("express"),
 
 var app = express();
 var todoRoutes = require("./routes/todo_routes");
-// mongoose.connect("mongodb://localhost/rest_app");
-mongoose.connect("mongodb://joe:56010163@ds011281.mlab.com:11281/apidemo");
+mongoose.connect("mongodb://localhost/rest_app");
+// mongoose.connect("mongodb://joe:56010163@ds011281.mlab.com:11281/apidemo");
 
 
 // configure app to use bodyParser()
