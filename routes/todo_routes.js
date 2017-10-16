@@ -1,14 +1,14 @@
 var express = require("express");
 var router = express.Router();
 //middleware to use for all requests
-router.use(function(req,res,next){
+router.use((req, res, next) => {
     res.contentType("application/json");
     console.log("Something is happening");
     next();
 });
 
 //test routes to make sure everything is working
-router.get('/', function(req, res) {
+router.get('/', (req, res) => {
   var message = { message: " Hello! welcome to To Do api! " };
     res.json(message.message);
 });
@@ -19,9 +19,9 @@ router.route("/todotasks")
   //add a task to the list and set the task status
 
   //view all item in the list
-  .get(function(req,res){
-    Task.find({},function(err,tasks){
-      if(err){
+  .get((req, res) => {
+    Task.find({}, (err,tasks) => {
+      if(err) {
         return res.send(err);
       } else {
         res.json(tasks);
@@ -30,27 +30,21 @@ router.route("/todotasks")
   })
 
     //add a single task in the list
-    .post(function(req,res,next){
-
-    // var task = new Task();
-    // task.name = req.body.name;
-    // task.description = req.body.description;
-    // task.status = req.body.status;
-
-    Task.create(req.body, function(err,task){
-        if(err){
-          return res.send(err);
-        }
-        else {
-          res.json("Add new "+ task.name +" Completed");
-        }
-    });
+    .post((req, res) => {
+      Task.create(req.body, (err, task) => {
+          if(err) {
+            return res.send(err);
+          }
+          else {
+            res.json("Add new "+ task.name +" Completed");
+          }
+      });
   })
 
   //delete a task from the list
-  .delete(function(req,res){
-    Task.remove(function(err,tasks){
-      if(err){
+  .delete((req, res) => {
+    Task.remove((err, tasks) => {
+      if(err) {
         return res.send(err);
       } else {
         res.json({message:"All task deleted"});
@@ -60,9 +54,9 @@ router.route("/todotasks")
 
 router.route("/todotasks/:task_id")
   //view a single task in the list
-  .get(function(req, res) {
-        Task.findById(req.params.task_id, function(err, task) {
-            if (err){
+  .get((req, res) => {
+        Task.findById(req.params.task_id, (err, task) => {
+            if (err) {
               return res.send(err);
             } else {
               res.json(task);
@@ -70,8 +64,8 @@ router.route("/todotasks/:task_id")
         });
     })
   // edit existing task
-  .put(function(req, res){
-    Task.findByIdAndUpdate(req.params.task_id ,req.body.task, function(err,task){
+  .put((req, res) => {
+    Task.findByIdAndUpdate(req.params.task_id ,req.body.task, (err, task) => {
         if(err){
           res.send(err);
         }
@@ -79,7 +73,7 @@ router.route("/todotasks/:task_id")
         task.description = req.body.description;
         task.status = req.body.status;
         console.log(task);
-        task.save(function(err){
+        task.save((err) => {
           if(err){
             return res.send(err);
           } else {
@@ -90,8 +84,8 @@ router.route("/todotasks/:task_id")
   })
 
   //delete a task from the list
-  .delete(function(req,res){
-    Task.findByIdAndRemove(req.params.task_id, function(err,task){
+  .delete((req,res) => {
+    Task.findByIdAndRemove(req.params.task_id, (err,task) => {
         if(err){
           return res.send(err);
         } else {
